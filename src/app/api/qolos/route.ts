@@ -5,11 +5,10 @@ export async function GET() {
     const connection = await connectToDatabase();
     const [rows] = await connection.execute('SELECT Qolo FROM Qolos');
     return Response.json(rows);
-  } catch (error: unknown) {
+  } catch (error) {
     if (error instanceof Error) {
       return Response.json({ error: error.message });
-    } else {
-      return Response.json({ error: 'Unknown error' });
     }
+    return Response.json({ error: 'Unknown error' });
   }
 }
