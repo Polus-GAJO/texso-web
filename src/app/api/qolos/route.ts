@@ -8,8 +8,7 @@ export async function GET() {
   } catch (error: unknown) {
     if (error instanceof Error) {
       return Response.json({ error: error.message });
-    } else {
-      return Response.json({ error: 'Unknown error' });
     }
+    return Response.json({ error: 'Unknown error' });
   }
 }
