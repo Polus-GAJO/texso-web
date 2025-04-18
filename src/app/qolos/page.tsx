@@ -2,9 +2,13 @@
 
 import { useEffect, useState } from 'react';
 
+interface QoloItem {
+  Qolo: string;
+}
+
 export default function QolosPage() {
-  const [qolos, setQolos] = useState([]);
-  const [filteredQolos, setFilteredQolos] = useState([]);
+  const [qolos, setQolos] = useState<QoloItem[]>([]);
+  const [filteredQolos, setFilteredQolos] = useState<QoloItem[]>([]);
   const [searchTerm, setSearchTerm] = useState('');
 
   const syriacLetters = [
@@ -39,9 +43,9 @@ export default function QolosPage() {
   }, []);
 
   function removeDiacritics(str: string) {
-    return str.replace(/[\u0307\u0304\u0308\u0670\u0700-\u070D\u070F\u0711\u0730-\u074A\u074A\u002E\u003A]/g, '');
-    }
-  
+    return str.replace(/[ٰ̇̄̈܀-܍܏ܑܰ-݊݊.:]/g, '');
+  }
+
   function filterBySearch(term: string) {
     const cleanedTerm = removeDiacritics(term.trim());
     const filtered = qolos.filter((item) =>
