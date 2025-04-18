@@ -29,4 +29,7 @@ body {
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
+  background-color: transparent;
+  color: var(--foreground);
+  font-family: Tahoma, 'Traditional Arabic', Arial, Helvetica, sans-serif;
 }
