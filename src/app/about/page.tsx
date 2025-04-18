@@ -7,7 +7,7 @@ export default function AboutPage() {
       <p className="mb-4 text-lg">هذه صفحة لاختبار تحميل الصورة من مجلد public.</p>
       <img
         src="/images/main-bg.png"
-        alt="اختبار الصورة"
+        alt="Background"
         className="w-64 h-auto border border-gray-400 rounded shadow"
       />
     </div>
