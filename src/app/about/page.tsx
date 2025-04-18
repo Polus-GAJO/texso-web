@@ -6,7 +6,7 @@ export default function AboutPage() {
       <h1 className="text-3xl font-bold mb-6">من نحن</h1>
       <p className="mb-4 text-lg">هذه صفحة لاختبار تحميل الصورة من مجلد public.</p>
       <img
-        src="/main-bg.jpg"
+        src="/main-bg.png"
         alt="اختبار الصورة"
         className="w-64 h-auto border border-gray-400 rounded shadow"
       />
