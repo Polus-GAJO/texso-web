@@ -1,10 +1,15 @@
-export default function SettingsPage() {
+'use client';
+
+export default function AboutPage() {
   return (
-    <div className="min-h-screen flex items-start justify-end p-6">
-      <div className="bg-white/80 text-black rounded-xl p-6 max-w-xs w-full text-right shadow-md">
-        <h1 className="text-3xl font-bold mb-2">من نحن</h1>
-        <p>هذه الصفحة قيد التطوير</p>
-      </div>
+    <div className="min-h-screen flex flex-col items-center justify-center p-10 bg-white">
+      <h1 className="text-3xl font-bold mb-6">من نحن</h1>
+      <p className="mb-4 text-lg">هذه صفحة لاختبار تحميل الصورة من مجلد public.</p>
+      <img
+        src="/main-bg.jpg"
+        alt="اختبار الصورة"
+        className="w-64 h-auto border border-gray-400 rounded shadow"
+      />
     </div>
   );
 }
