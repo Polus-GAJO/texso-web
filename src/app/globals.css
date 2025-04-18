@@ -25,6 +25,8 @@
 }
 
 body {
-  color: var(--foreground);
-  font-family: Tahoma, 'Traditional Arabic', Arial, Helvetica, sans-serif; /* يمكن إبقاؤه، لأن العناصر تستعمل font-[SertoJerusalem] مباشرة */
+  background-image: url('/main-bg.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
 }
