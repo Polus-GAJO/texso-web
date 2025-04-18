@@ -6,7 +6,7 @@ export async function GET() {
     const [rows] = await connection.execute('SELECT Qolo FROM Qolos');
     return Response.json(rows);
   } catch (error) {
-    return Response.json({ error: String(error) });
-
+    return Response.json({ error: (error as Error).message });
+  }
   }
 }
