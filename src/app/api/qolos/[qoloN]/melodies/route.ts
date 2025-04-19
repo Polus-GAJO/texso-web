@@ -6,6 +6,7 @@ export async function GET(
   context: { params: { qoloN: string } }
 ) {
   const { qoloN } = context.params;
+// Trigger redeploy on Vercel
 
   try {
     const [rows] = await db.query(
