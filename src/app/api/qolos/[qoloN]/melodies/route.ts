@@ -5,27 +5,27 @@ export async function GET(
   req: NextRequest,
   context: { params: { qoloN: string } }
 ) {
-  const qoloN = context.params.qoloN;
+  const { qoloN } = context.params;
 
   try {
     const [rows] = await db.query(
-      `
-      SELECT 
-  Melody.MelodyN,
-  Melody.Melody,
-  Qinto.Qinto,
-  Qolos.Qolo  -- ✅ إضافة اسم القولو
-FROM Melody
-LEFT JOIN Qinto ON Melody.QintoN = Qinto.QintoN
-LEFT JOIN Qolos ON Melody.QoloN = Qolos.QoloN
-WHERE Melody.QoloN = ?
-      `,
+      `SELECT 
+        Melody.MelodyN, 
+        Melody.Melody, 
+        Qinto.Qinto, 
+        Qolos.Qolo 
+       FROM Melody 
+       LEFT JOIN Qinto ON Melody.QintoN = Qinto.QintoN 
+       LEFT JOIN Qolos ON Melody.QoloN = Qolos.QoloN 
+       WHERE Melody.QoloN = ?`,
       [qoloN]
     );
 
     return Response.json(rows);
-  } catch (error: unknown) {
-    const err = error as Error;
-    return Response.json({ error: err.message }, { status: 500 });
-  } 
+  } catch (error) {
+    return Response.json(
+      { error: (error as Error).message },
+      { status: 500 }
+    );
+  }
 }
