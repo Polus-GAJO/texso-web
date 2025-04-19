@@ -1,8 +1,12 @@
 import { NextRequest } from 'next/server';
 import db from '@/lib/db';
 
-export async function GET(req: NextRequest, { params }: { params: { qoloN: string } }) {
-  const qoloN = params.qoloN;
+export async function GET(
+  req: NextRequest,
+  context: { params: { qoloN: string } }
+) {
+  const qoloN = context.params.qoloN;
+
 
   try {
     const [rows] = await db.query(

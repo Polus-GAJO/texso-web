@@ -3,9 +3,9 @@ import db from '@/lib/db';
 
 export async function GET(
   req: NextRequest,
-  { params }: { params: { qoloN: string } }
+  context: { params: { qoloN: string } }
 ) {
-  const qoloN = params.qoloN;
+  const qoloN = context.params.qoloN;
 
   try {
     const [rows] = await db.query(
