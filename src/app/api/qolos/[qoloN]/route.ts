@@ -15,7 +15,8 @@ export async function GET(req: NextRequest, { params }: { params: { qoloN: strin
     }
 
     return Response.json(rows[0]);
-  } catch (error: any) {
-    return Response.json({ error: error.message }, { status: 500 });
-  }
+  } catch (error: unknown) {
+    const err = error as Error;
+    return Response.json({ error: err.message }, { status: 500 });
+  }  
 }

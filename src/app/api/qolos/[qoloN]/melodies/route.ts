@@ -24,7 +24,8 @@ WHERE Melody.QoloN = ?
     );
 
     return Response.json(rows);
-  } catch (error: any) {
-    return Response.json({ error: error.message }, { status: 500 });
-  }
+  } catch (error: unknown) {
+    const err = error as Error;
+    return Response.json({ error: err.message }, { status: 500 });
+  } 
 }
