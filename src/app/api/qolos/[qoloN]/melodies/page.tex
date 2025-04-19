@@ -1,0 +1,48 @@
+import { notFound } from 'next/navigation';
+
+type Melody = {
+  MelodyN: number;
+  Melody: string;
+  Qinto: string;
+};
+
+async function getMelodies(qoloN: string): Promise<Melody[]> {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/qolo/${qoloN}/melodies`, {
+    cache: 'no-store',
+  });
+
+  if (!res.ok) {
+    notFound();
+  }
+
+  return res.json();
+}
+
+export default async function QoloMelodiesPage({ params }: { params: { qoloN: string } }) {
+  const melodies = await getMelodies(params.qoloN);
+
+  return (
+    <div className="min-h-screen p-6 text-right font-[SertoJerusalem] bg-white/80">
+      <h1 className="text-3xl font-bold mb-6">الألحان المرتبطة بالقولو</h1>
+
+      <table className="w-full text-xl border-collapse">
+        <thead>
+          <tr>
+            <th className="border-b p-2">#</th>
+            <th className="border-b p-2">قينة</th>
+            <th className="border-b p-2">اللحن</th>
+          </tr>
+        </thead>
+        <tbody>
+          {melodies.map((melody, index) => (
+            <tr key={melody.MelodyN}>
+              <td className="border-b p-2 text-center">{index + 1}</td>
+              <td className="border-b p-2">{melody.Qinto || '—'}</td>
+              <td className="border-b p-2">{melody.Melody}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+}

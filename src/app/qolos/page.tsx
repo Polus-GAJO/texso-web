@@ -1,8 +1,10 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation';
 
 interface QoloItem {
+  QoloN: number;
   Qolo: string;
 }
 
@@ -10,6 +12,7 @@ export default function QolosPage() {
   const [qolos, setQolos] = useState<QoloItem[]>([]);
   const [filteredQolos, setFilteredQolos] = useState<QoloItem[]>([]);
   const [searchTerm, setSearchTerm] = useState('');
+  const router = useRouter();
 
   const syriacLetters = [
     'ܐ', 'ܒ', 'ܓ', 'ܕ', 'ܗ', 'ܘ', 'ܙ', 'ܚ', 'ܛ',
@@ -101,7 +104,7 @@ export default function QolosPage() {
         ))}
       </div>
 
-      {/* ✅ المربع الأبيض للنصوص */}
+      {/* ✅ عرض القولو */}
       <div className="bg-white/80 text-black rounded-xl p-6 max-w-2xl w-full text-right shadow-md">
         <h1 className="text-4xl font-bold mb-6 font-[SertoJerusalem]">ܩܘ̈ܠܐ (قولي)</h1>
 
@@ -109,9 +112,11 @@ export default function QolosPage() {
           {filteredQolos.map((item, index) => (
             <li
               key={index}
-              className="border-b border-gray-400 pb-2 text-2xl font-[SertoJerusalem]"
+              className="border-b border-gray-400 pb-2 text-2xl font-[SertoJerusalem] flex flex-row-reverse justify-start items-center gap-2 cursor-pointer"
+              onClick={() => router.push(`/qolos/${item.QoloN}/melodies`)}
             >
-              {item.Qolo}
+              <span className="text-gray-500 text-sm ml-2">.{index + 1}</span>
+              <span>{item.Qolo}</span>
             </li>
           ))}
         </ul>
